@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPersistanceInfrastructure(builder.Configuration);
 
-builder.Services.AddApplicationLayer(builder.Configuration);
+builder.Services.AddApplicationLayer();
 
 builder.Services.AddCors(options => options.AddPolicy("ApiCorsPolicy",
              builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
@@ -37,7 +37,6 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Ingrese el token en formato: Bearer {token}"
     });
 
-    // 🔐 Aplicar seguridad globalmente en los endpoints protegidos
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
